@@ -1,5 +1,14 @@
+# Приложения "Карта Эмоций" для Хакатона ВКонтакте 
+Сделали 3 версии (Андроид, Web, MiniApp)
+## 1.Android приложение
+Исходники представлены в этом репозитории
+Ссылка на APK файл - https://github.com/bumsun/vkfinal/blob/master/app/release/app-release.apk
 
-# Приложение "Карта Эмоций" для Хакатона ВКонтакте
+## 1.Web приложение
+ссылка на репозиторий мобильной версии - https://github.com/PsssUm/moodwebapp
+ссылка на мобильную веб версию - https://psssum.github.io/moodwebapp/
+репозиторий мини апп версии - https://github.com/PsssUm/moodminiapp
+ссылка на мини апп - https://vk.com/app7601800
 
 Реализовано:
 1) Создание постов
