@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="15sp"
+            android:lineHeight="20dp"
             android:text="Сейчас самое время помочь тем, кто не может попростиь о помощи сам."/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

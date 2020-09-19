@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.utils.MockData;
@@ -20,12 +21,15 @@ public class FeedEmoActivity extends BaseActivity {
     private String emo;
     private ArrayList<VkClusterItem> localItems;
     private ImageView mapIV;
+    private TextView titleTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_emo);
+
         emo = getIntent().getExtras().getString("emo");
+
         mapIV = (ImageView) findViewById(R.id.mapIV);
         mapIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +40,19 @@ public class FeedEmoActivity extends BaseActivity {
             }
         });
 
+        titleTV = findViewById(R.id.titleTV);
+        if(emo.equals("best")){
+            titleTV.setText("Хорошее настроение");
+        }
+        if(emo.equals("scver")){
+            titleTV.setText("Скверное настроение");
+        }
+        if(emo.equals("middle")){
+            titleTV.setText("Умиротворённое настроение");
+        }
+        if(emo.equals("energy")){
+            titleTV.setText("Энергичное настроение");
+        }
 
         Log.d("myLogs","category = " + emo);
         Log.d("myLogs","MockData.getItems().size = " + MockData.getItems().size());

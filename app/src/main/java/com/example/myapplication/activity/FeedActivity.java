@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.utils.MockData;
@@ -22,6 +23,8 @@ public class FeedActivity extends BaseActivity {
     private ListView postsLV;
     private String category;
     private ArrayList<VkClusterItem> localItems;
+    private TextView titleTV;
+    private String categoryRus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,17 @@ public class FeedActivity extends BaseActivity {
         setContentView(R.layout.activity_feed);
 
         category = getIntent().getExtras().getString("category");
+        categoryRus = getIntent().getExtras().getString("categoryRus");
         Log.d("myLogs","category = " + category);
         Log.d("myLogs","MockData.getItems().size = " + MockData.getItems().size());
         postsLV = findViewById(R.id.postsLV);
+        titleTV = findViewById(R.id.titleTV);
 
+        categoryRus = categoryRus.substring(0, 1).toUpperCase() + categoryRus.substring(1).toLowerCase();
+        titleTV.setText(categoryRus);
+        if(categoryRus.equals("It")){
+            titleTV.setText("Информационные технологии");
+        }
         localItems = new ArrayList<VkClusterItem>();
         for(VkClusterItem item: MockData.getItems()){
             Log.d("myLogs","item.getPhotoUrl() = " + item.getPhotoUrl());

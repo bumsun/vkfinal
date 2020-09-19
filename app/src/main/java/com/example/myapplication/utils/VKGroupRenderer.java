@@ -58,9 +58,9 @@ public class VKGroupRenderer extends DefaultClusterRenderer<VkClusterItem> {
         iconWidth = Math.round(ConvertUtils.convertDpToPixel(72f, context));
         photoWidth = Math.round(ConvertUtils.convertDpToPixel(88f, context));
         photoCounterWidth = Math.round(ConvertUtils.convertDpToPixel(52f, context));
-        textPaddingLeft = Math.round(ConvertUtils.convertDpToPixel(7f, context));
-        textPaddingLeft12 = Math.round(ConvertUtils.convertDpToPixel(12f, context));
-        textPaddingTop = Math.round(ConvertUtils.convertDpToPixel(5f, context));
+        textPaddingLeft = Math.round(ConvertUtils.convertDpToPixel(24f, context));
+        textPaddingLeft12 = Math.round(ConvertUtils.convertDpToPixel(32f, context));
+        textPaddingTop = Math.round(ConvertUtils.convertDpToPixel(24f, context));
         myCounterView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.cluster_text_layout, null);
         myMarker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.cluster_item_layout, null);
         photosMarker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.cluster_item_photo, null);

@@ -78,6 +78,19 @@
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="12dp"
                 android:layout_margin="16dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:id="@+id/emptyView"
+                android:background="#EBEDF0">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="14sp"
+                    android:text="Ничего не найдено"/>
+
+            </RelativeLayout>
             <HorizontalScrollView
                 android:id="@+id/hsv"
                 android:layout_width="match_parent"
@@ -91,71 +104,72 @@
                     android:orientation="horizontal"
                     android:layout_marginRight="12dp"
                     android:layout_marginLeft="12dp">
+
                     <ImageView
                         android:id="@+id/musicBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_music"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_music_happy"
                         />
                     <ImageView
                         android:id="@+id/cinemaBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_cinema"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_cinema_happy"
                         />
                     <ImageView
                         android:id="@+id/autumnBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_autumn"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_autumn_happy"
                         />
                     <ImageView
                         android:id="@+id/workBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_work"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_work_happy"
                         />
                     <ImageView
                         android:id="@+id/karantinBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_karantin"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_karantin_sad"
                         />
                     <ImageView
                         android:id="@+id/itBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_it"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_it_sad"
                         />
                     <ImageView
                         android:id="@+id/carBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_car"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_car_happy"
                         />
                     <ImageView
                         android:id="@+id/gameBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_game"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_games_energy"
                         />
                     <ImageView
                         android:id="@+id/artBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_art"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_art_calm"
                         />
                     <ImageView
                         android:id="@+id/humorBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_humor"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_humor_energy"
                         />
                     <ImageView
                         android:id="@+id/photoBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_topic_photo"
+                        android:layout_width="80dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_topic_photo_calm"
                         />
                 </LinearLayout>
 
@@ -163,5 +177,12 @@
 
         </LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/blackLL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:alpha="0.35"
+        android:background="@color/black"/>
     <include layout="@layout/bottom_sheet_emotion2" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

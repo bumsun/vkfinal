@@ -3,6 +3,7 @@ package com.example.myapplication.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MapActivity extends BaseActivity {
@@ -65,6 +68,11 @@ public class MapActivity extends BaseActivity {
     private ArrayList<ImageView> arrayCatButtons;
     private ArrayList<String> arrayCatTexts;
     private ArrayList<String> arrayCatTextsEng;
+    private String searchText ="";
+    private LinearLayout blackLL;
+    private ArrayList<Integer> arrayIcons;
+    private ArrayList<Integer> arrayIconsPressed;
+    private RelativeLayout emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +132,7 @@ public class MapActivity extends BaseActivity {
 
         mClusterManager.addItems(localItems);
         mClusterManager.cluster();
+        filterCategoryView();
     }
 
     private void createClusterManager(){
@@ -160,7 +169,17 @@ public class MapActivity extends BaseActivity {
             public boolean onClusterItemClick(ClusterItem clusterItem) {
                 String category = ((VkClusterItem)clusterItem).getPhotoUrl().replace("https://instarlike.com/icons_vk/","");
                 Intent intent = new Intent(getActivity(), FeedActivity.class);
+                int i = 0;
+                String categoryRus = "";
+                for(String text:arrayCatTextsEng){
+                    if(category.contains(text)){
+                        categoryRus = arrayCatTexts.get(i);
+                        break;
+                    }
+                    i++;
+                }
                 intent.putExtra("category",category);
+                intent.putExtra("categoryRus",categoryRus);
                 startActivity(intent);
                 return false;
             }
@@ -176,6 +195,34 @@ public class MapActivity extends BaseActivity {
 //        tsb = TimerSearchBreaker(applicationContext, TimerSearchBreaker.ISearchTask { loadNewPhotos(it) })
     }
 
+    private void filterCategoryView(){
+
+        String allCanCategories = "";
+        for(VkClusterItem item:MockData.getItems()){
+            if(item.getTypeEmocion().equals(selectedTypeEmo)){
+                allCanCategories += ","+item.getPhotoUrl().replace("https://instarlike.com/icons_vk/","")+",";
+            }
+        }
+        Log.d("myLogs","allCanCategories = " + allCanCategories);
+        int i = 0;
+        Boolean notFound = true;
+        for(String text:arrayCatTexts){
+            if(text.toLowerCase().contains(searchText) && allCanCategories.contains(","+arrayCatTextsEng.get(i))){
+                notFound = false;
+                arrayCatButtons.get(i).setVisibility(View.VISIBLE);
+            }else{
+                arrayCatButtons.get(i).setVisibility(View.GONE);
+            }
+            i++;
+        }
+
+        if(notFound){
+            emptyView.setVisibility(View.VISIBLE);
+        }else{
+            emptyView.setVisibility(View.GONE);
+        }
+    }
+
     private void initCategoryView() {
         searchET = (EditText) findViewById(R.id.searchET);
         searchET.addTextChangedListener(new TextWatcher() {
@@ -186,15 +233,8 @@ public class MapActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int i = 0;
-                for(String text:arrayCatTexts){
-                    if(text.toLowerCase().contains(s.toString())){
-                        arrayCatButtons.get(i).setVisibility(View.VISIBLE);
-                    }else{
-                        arrayCatButtons.get(i).setVisibility(View.GONE);
-                    }
-                    i++;
-                }
+                searchText = s.toString();
+                filterCategoryView();
             }
 
             @Override
@@ -202,6 +242,9 @@ public class MapActivity extends BaseActivity {
 
             }
         });
+
+        emptyView = (RelativeLayout) findViewById(R.id.emptyView);
+        emptyView.setVisibility(View.GONE);
         musicBTN = (ImageView) findViewById(R.id.musicBTN);
         cinemaBTN = (ImageView) findViewById(R.id.cinemaBTN);
         autumnBTN = (ImageView) findViewById(R.id.autumnBTN);
@@ -214,8 +257,31 @@ public class MapActivity extends BaseActivity {
         humorBTN = (ImageView) findViewById(R.id.humorBTN);
         photoBTN = (ImageView) findViewById(R.id.photoBTN);
 
+        arrayIcons = new ArrayList<Integer>();
+        arrayIcons.add(R.drawable.ic_topic_music_happy);
+        arrayIcons.add(R.drawable.ic_topic_cinema_happy);
+        arrayIcons.add(R.drawable.ic_topic_autumn_happy);
+        arrayIcons.add(R.drawable.ic_topic_work_happy);
+        arrayIcons.add(R.drawable.ic_topic_karantin_sad);
+        arrayIcons.add(R.drawable.ic_topic_it_sad);
+        arrayIcons.add(R.drawable.ic_topic_car_happy);
+        arrayIcons.add(R.drawable.ic_topic_games_energy);
+        arrayIcons.add(R.drawable.ic_topic_art_calm);
+        arrayIcons.add(R.drawable.ic_topic_humor_energy);
+        arrayIcons.add(R.drawable.ic_topic_photo_calm);
 
-
+        arrayIconsPressed = new ArrayList<Integer>();
+        arrayIconsPressed.add(R.drawable.ic_topic_music_happy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_cinema_happy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_autumn_happy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_work_happy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_karantin_sad_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_it_sad_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_car_happy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_games_energy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_art_calm_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_humor_energy_pressed);
+        arrayIconsPressed.add(R.drawable.ic_topic_photo_calm_pressed);
 
         arrayCatButtons = new ArrayList<ImageView>();
         arrayCatButtons.add(musicBTN);
@@ -235,22 +301,23 @@ public class MapActivity extends BaseActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(v.getAlpha() != 1){
-                        v.setAlpha(1);
-                        selectedTypeCategory = null;
-                    }else{
-                        int i = 0;
-                        for(ImageView button:arrayCatButtons) {
-                            if(v.equals(button) ){
-                                selectedTypeCategory = arrayCatTextsEng.get(i);
-                                Log.d("myLogs","selectedTypeCategory = " + selectedTypeCategory);
-                            }else{
-                                button.setAlpha(1f);
-                            }
-                            i++;
-                        }
-                        v.setAlpha(0.7f);
 
+                    int i = 0;
+                    for(ImageView button:arrayCatButtons) {
+                        if(v.equals(button) ){
+                            if(selectedTypeCategory != null && selectedTypeCategory.equals(arrayCatTextsEng.get(i))){
+                                selectedTypeCategory = null;
+                                button.setImageResource(arrayIcons.get(i));
+                                addPhotoItems();
+                                return;
+                            }
+                            button.setImageResource(arrayIconsPressed.get(i));
+                            selectedTypeCategory = arrayCatTextsEng.get(i);
+                            Log.d("myLogs","selectedTypeCategory = " + selectedTypeCategory);
+                        }else{
+                            button.setImageResource(arrayIcons.get(i));
+                        }
+                        i++;
                     }
                     addPhotoItems();
                 }
@@ -295,6 +362,9 @@ public class MapActivity extends BaseActivity {
         radioEmo2 = (TextView) findViewById(R.id.radioEmo2);
         radioEmo3 = (TextView) findViewById(R.id.radioEmo3);
         radioEmo4 = (TextView) findViewById(R.id.radioEmo4);
+        blackLL = (LinearLayout) findViewById(R.id.blackLL);
+        blackLL.animate().alpha(0f).setDuration(1);
+        blackLL.setVisibility(View.GONE);
 
         sheetBehavior = BottomSheetBehavior.from(bottom_sheet);
 
@@ -321,13 +391,19 @@ public class MapActivity extends BaseActivity {
             public void onStateChanged(@NonNull View view, int newState) {
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
+//                        blackLL.setVisibility(View.GONE);
+                        blackLL.animate().alpha(0f).setDuration(300);
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED: {
                         Log.d("MyLogs","Close Sheet");
+                        blackLL.setVisibility(View.VISIBLE);
+                        blackLL.animate().alpha(0.35f).setDuration(300);
                     }
                     break;
                     case BottomSheetBehavior.STATE_COLLAPSED: {
                         Log.d("MyLogs","Expand Sheet");
+//                        blackLL.setVisibility(View.GONE);
+                        blackLL.animate().alpha(0f).setDuration(300);
                     }
                     break;
                     case BottomSheetBehavior.STATE_DRAGGING:
@@ -347,6 +423,7 @@ public class MapActivity extends BaseActivity {
     public void onRadioButtonClicked(View view) {
         // если переключатель отмечен
         // Получаем нажатый переключатель
+        selectedTypeCategory = null;
         switch(view.getId()) {
             case R.id.radioEmo1:
                 selectedTypeEmo = "best";
@@ -376,26 +453,33 @@ public class MapActivity extends BaseActivity {
         radioEmo2.setAlpha(0.5f);
         radioEmo3.setAlpha(0.5f);
         radioEmo4.setAlpha(0.5f);
+        radioEmo1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_best, 0, 0, 0);
+        radioEmo2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_scver, 0, 0, 0);
+        radioEmo3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_middle, 0, 0, 0);
+        radioEmo4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_energy, 0, 0, 0);
         if(selectedTypeEmo.equals("best")){
             radioEmo1.setAlpha(1f);
             emotionBTN.setText("Хорошее настроение");
             emotionBTN.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_best, 0, R.drawable.ic_dropdown_16, 0);
+            radioEmo1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_best, 0, R.drawable.ic_check, 0);
         }
         if(selectedTypeEmo.equals("scver")){
             radioEmo2.setAlpha(1f);
             emotionBTN.setText("Скверное настроение");
             emotionBTN.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_scver, 0, R.drawable.ic_dropdown_16, 0);
+            radioEmo2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_scver, 0, R.drawable.ic_check, 0);
         }
         if(selectedTypeEmo.equals("middle")){
             radioEmo3.setAlpha(1f);
             emotionBTN.setText("Умиротворённое настроение");
             emotionBTN.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_middle, 0, R.drawable.ic_dropdown_16, 0);
+            radioEmo3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_middle, 0, R.drawable.ic_check, 0);
         }
         if(selectedTypeEmo.equals("energy")){
             radioEmo4.setAlpha(1f);
             emotionBTN.setText("Энергичное настроение");
             emotionBTN.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_energy, 0, R.drawable.ic_dropdown_16, 0);
+            radioEmo4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_energy, 0, R.drawable.ic_check, 0);
         }
     }
-
 }

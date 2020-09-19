@@ -2,7 +2,9 @@ package com.example.myapplication.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -170,6 +172,7 @@ public class CreatePostActivity extends BaseActivity {
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     public void onRadioButtonClicked(View view) {
         // если переключатель отмечен
         boolean checked = ((RadioButton) view).isChecked();
@@ -209,6 +212,11 @@ public class CreatePostActivity extends BaseActivity {
             startActivity(intent);
             finish();
         }
+//        view.setBackground(R.drawable.button_blue_b_stroke_shape_disable);
+
+        emotionBTN.setBackgroundResource(R.drawable.button_blue_b_stroke_shape_disable);
+        emotionBTN.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
+        emotionBTN.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_dropdown, 0);
         Log.d("myLogs","selected emo = " + selectedTypeEmo);
     }
 }
