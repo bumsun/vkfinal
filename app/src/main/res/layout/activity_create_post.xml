@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <EditText
+                    android:gravity="left"
                     android:id="@+id/textPostET"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
@@ -131,13 +132,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_marginLeft="12dp"
-                            android:background="@drawable/button_blue_stroke_vk"
+                            android:background="@drawable/button_blue_b_stroke_shape_disable"
                             android:text="Работа"
                             android:textAllCaps="true"
                             android:paddingLeft="8dp"
                             android:drawablePadding="4dp"
-                            android:textColor="#818C99"
-                            android:drawableRight="@drawable/ic_dropdown_16"
+                            android:textColor="@color/colorAccent"
+                            android:drawableRight="@drawable/ic_dropdown"
                             android:paddingRight="8dp"
                             android:textSize="11sp" />
                         <Button

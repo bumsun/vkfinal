@@ -57,14 +57,14 @@ public class MockData {
         items.add(new VkClusterItem(testPhotoUrl+"game.png","17","Евгений Александров",act.getResources().getString(R.string.game_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_games,"energy"));
         items.add(new VkClusterItem(testPhotoUrl+"game.png","18","Юлечка красотулечка",act.getResources().getString(R.string.game_energy2),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_games_2,"energy"));
 
-        items.add(new VkClusterItem(testPhotoUrl+"art.png","19","Евгений Александров",act.getResources().getString(R.string.art_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_art_1,"energy"));
-        items.add(new VkClusterItem(testPhotoUrl+"art.png","20","Юлечка красотулечка",act.getResources().getString(R.string.art_energy2),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_art_2,"energy"));
+        items.add(new VkClusterItem(testPhotoUrl+"art.png","19","Евгений Александров",act.getResources().getString(R.string.art_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_art_1,"middle"));
+        items.add(new VkClusterItem(testPhotoUrl+"art.png","20","Юлечка красотулечка",act.getResources().getString(R.string.art_energy2),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_art_2,"middle"));
 
         items.add(new VkClusterItem(testPhotoUrl+"humor.png","21","Евгений Александров",act.getResources().getString(R.string.humor_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_humor_1,"energy"));
         items.add(new VkClusterItem(testPhotoUrl+"humor.png","22","Юлечка красотулечка",act.getResources().getString(R.string.humor_energy2),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_humor_2,"energy"));
 
-        items.add(new VkClusterItem(testPhotoUrl+"photo.png","23","Евгений Александров",act.getResources().getString(R.string.photo_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_photo_1,"energy"));
-        items.add(new VkClusterItem(testPhotoUrl+"photo.png","24","Юлечка красотулечка",act.getResources().getString(R.string.photo_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_photo_2,"energy"));
+        items.add(new VkClusterItem(testPhotoUrl+"photo.png","23","Евгений Александров",act.getResources().getString(R.string.photo_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_photo_1,"middle"));
+        items.add(new VkClusterItem(testPhotoUrl+"photo.png","24","Юлечка красотулечка",act.getResources().getString(R.string.photo_energy1),randLong(),randLat(),"Addr1",false,"ScreenName1",R.drawable.photo_photo_2,"middle"));
     }
 
     public static ArrayList<VkClusterItem> getItems() {
